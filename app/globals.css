@@ -3,12 +3,31 @@
 :root {
   --background: #fafaf8;
   --foreground: #171717;
+
+  /* Identité DocClair — thème sombre (landing page) */
+  --ink: #0f1117;
+  --ink-alt: #13151f;
+  --card: #1a1d27;
+  --card-hover: #20232f;
+  --accent: #4f6ef7;
+  --accent-2: #7c3aed;
+  --border-soft: #2d3148;
+  --muted: #9ca3af;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
+
+  --color-ink: var(--ink);
+  --color-ink-alt: var(--ink-alt);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-border-soft: var(--border-soft);
+  --color-muted: var(--muted);
 }
 
 body {
@@ -21,4 +40,63 @@ body {
   .print-hide {
     display: none !important;
   }
+}
+
+/* Identité DocClair */
+
+.dc-gradient-text {
+  background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dc-gradient-bg {
+  background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+}
+
+.dc-gradient-border {
+  position: relative;
+}
+
+.dc-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.dc-card-hover {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.dc-card-hover:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(79, 110, 247, 0.25), 0 20px 40px -20px rgba(79, 110, 247, 0.35);
+  transform: translateY(-2px);
+}
+
+@keyframes dc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dc-reveal {
+  opacity: 0;
+}
+
+.dc-reveal.dc-visible {
+  animation: dc-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
