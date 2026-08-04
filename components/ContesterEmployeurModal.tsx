@@ -118,19 +118,19 @@ export default function ContesterEmployeurModal({
     form.montantReclame.trim();
 
   const inputCls =
-    "w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500";
+    "w-full rounded-lg border border-border-soft bg-ink px-3 py-2 text-sm text-white placeholder:text-muted outline-none focus:border-accent focus:ring-1 focus:ring-accent";
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="relative w-full max-w-2xl rounded-2xl bg-white shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-2xl rounded-2xl border border-border-soft bg-card shadow-2xl flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-stone-200 px-6 py-4 shrink-0">
-          <h2 className="text-lg font-semibold text-gray-900">
+        <div className="flex items-center justify-between border-b border-border-soft px-6 py-4 shrink-0">
+          <h2 className="text-lg font-semibold text-white">
             Contester une réclamation employeur
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-700 transition"
+            className="text-muted hover:text-white transition"
             aria-label="Fermer"
           >
             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -146,7 +146,7 @@ export default function ContesterEmployeurModal({
         <div className="overflow-y-auto flex-1 px-6 py-5">
           {etape === "formulaire" && (
             <div className="space-y-5">
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-muted leading-relaxed">
                 Renseignez votre situation pour générer une lettre de
                 contestation citant les articles{" "}
                 <strong>L.1226-7</strong> et <strong>L.1234-9</strong> du Code
@@ -155,11 +155,11 @@ export default function ContesterEmployeurModal({
 
               {/* Vos coordonnées */}
               <fieldset className="space-y-3">
-                <legend className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <legend className="text-xs font-semibold uppercase tracking-wide text-muted">
                   Vos coordonnées
                 </legend>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Nom complet <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -171,7 +171,7 @@ export default function ContesterEmployeurModal({
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Adresse complète <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -188,11 +188,11 @@ export default function ContesterEmployeurModal({
 
               {/* Employeur */}
               <fieldset className="space-y-3">
-                <legend className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <legend className="text-xs font-semibold uppercase tracking-wide text-muted">
                   Ancien employeur
                 </legend>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Raison sociale <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -206,9 +206,9 @@ export default function ContesterEmployeurModal({
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Adresse de l&apos;employeur{" "}
-                    <span className="text-stone-400 font-normal">(facultatif)</span>
+                    <span className="text-muted font-normal">(facultatif)</span>
                   </label>
                   <input
                     type="text"
@@ -224,7 +224,7 @@ export default function ContesterEmployeurModal({
 
               {/* Situation */}
               <fieldset className="space-y-2">
-                <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
                   Type de situation <span className="text-red-500">*</span>
                 </legend>
                 {(
@@ -236,7 +236,7 @@ export default function ContesterEmployeurModal({
                 ).map(([val, label]) => (
                   <label
                     key={val}
-                    className="flex cursor-pointer items-center gap-3 rounded-lg border border-stone-200 px-4 py-3 hover:bg-stone-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50"
+                    className="flex cursor-pointer items-center gap-3 rounded-lg border border-border-soft px-4 py-3 hover:bg-white/5 has-[:checked]:border-accent has-[:checked]:bg-accent/10"
                   >
                     <input
                       type="radio"
@@ -248,7 +248,7 @@ export default function ContesterEmployeurModal({
                       }
                       className="accent-blue-600"
                     />
-                    <span className="text-sm font-medium text-gray-800">
+                    <span className="text-sm font-medium text-white/90">
                       {label}
                     </span>
                   </label>
@@ -257,11 +257,11 @@ export default function ContesterEmployeurModal({
 
               {/* Montant + indemnités */}
               <fieldset className="space-y-3">
-                <legend className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <legend className="text-xs font-semibold uppercase tracking-wide text-muted">
                   Détails financiers
                 </legend>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Montant réclamé (€) <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -275,15 +275,15 @@ export default function ContesterEmployeurModal({
                   />
                 </div>
                 <div>
-                  <p className="mb-2 text-sm font-medium text-gray-700">
+                  <p className="mb-2 text-sm font-medium text-white/80">
                     Indemnités non versées par l&apos;employeur{" "}
-                    <span className="text-stone-400 font-normal">(facultatif)</span>
+                    <span className="text-muted font-normal">(facultatif)</span>
                   </p>
                   <div className="space-y-2">
                     {INDEMNITES_OPTIONS.map((opt) => (
                       <label
                         key={opt}
-                        className="flex cursor-pointer items-center gap-3 rounded-lg border border-stone-200 px-3 py-2 text-sm hover:bg-stone-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50"
+                        className="flex cursor-pointer items-center gap-3 rounded-lg border border-border-soft px-3 py-2 text-sm hover:bg-white/5 has-[:checked]:border-accent has-[:checked]:bg-accent/10"
                       >
                         <input
                           type="checkbox"
@@ -291,7 +291,7 @@ export default function ContesterEmployeurModal({
                           onChange={() => toggleIndemnite(opt)}
                           className="accent-blue-600"
                         />
-                        <span className="text-gray-800">{opt}</span>
+                        <span className="text-white/90">{opt}</span>
                       </label>
                     ))}
                   </div>
@@ -300,9 +300,9 @@ export default function ContesterEmployeurModal({
 
               {/* Référence */}
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
+                <label className="mb-1 block text-sm font-medium text-white/80">
                   Référence du courrier{" "}
-                  <span className="text-stone-400 font-normal">(facultatif)</span>
+                  <span className="text-muted font-normal">(facultatif)</span>
                 </label>
                 <input
                   type="text"
@@ -316,7 +316,7 @@ export default function ContesterEmployeurModal({
               </div>
 
               {erreur && (
-                <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+                <p className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
                   {erreur}
                 </p>
               )}
@@ -324,8 +324,8 @@ export default function ContesterEmployeurModal({
           )}
 
           {etape === "lettre" && lettre && (
-            <div className="rounded-xl border border-stone-200 bg-stone-50 p-4">
-              <pre className="whitespace-pre-wrap font-sans text-sm text-gray-800 leading-relaxed">
+            <div className="rounded-xl border border-border-soft bg-ink p-4">
+              <pre className="whitespace-pre-wrap font-sans text-sm text-white/90 leading-relaxed">
                 {lettre}
               </pre>
             </div>
@@ -333,19 +333,19 @@ export default function ContesterEmployeurModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-stone-200 px-6 py-4 shrink-0">
+        <div className="border-t border-border-soft px-6 py-4 shrink-0">
           {etape === "formulaire" && (
             <div className="flex gap-3">
               <button
                 onClick={onClose}
-                className="flex-1 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-stone-50"
+                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
               >
                 Annuler
               </button>
               <button
                 onClick={generer}
                 disabled={!champValide || loading}
-                className="flex-1 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Génération en cours…" : "Générer la lettre"}
               </button>
@@ -356,19 +356,19 @@ export default function ContesterEmployeurModal({
             <div className="flex flex-col gap-2 sm:flex-row">
               <button
                 onClick={() => setEtape("formulaire")}
-                className="flex-1 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-stone-50"
+                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
               >
                 Modifier
               </button>
               <button
                 onClick={copier}
-                className="flex-1 rounded-full border border-blue-300 bg-blue-50 px-5 py-2.5 text-sm font-medium text-blue-700 transition hover:bg-blue-100"
+                className="flex-1 rounded-full border border-accent/30 bg-accent/10 px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-accent transition hover:bg-accent/20"
               >
                 {copie ? "Copié !" : "Copier la lettre"}
               </button>
               <button
                 onClick={telecharger}
-                className="flex-1 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700"
+                className="flex-1 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90"
               >
                 Télécharger en PDF
               </button>

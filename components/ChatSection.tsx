@@ -70,11 +70,11 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
   }
 
   return (
-    <section className="rounded-2xl border border-stone-200 bg-white overflow-hidden print:hidden">
+    <section className="rounded-2xl border border-border-soft bg-card overflow-hidden print:hidden">
       {/* Header */}
-      <div className="border-b border-stone-200 px-6 py-4">
-        <h2 className="font-semibold text-gray-900">Poser une question</h2>
-        <p className="mt-0.5 text-sm text-gray-500">
+      <div className="border-b border-border-soft px-6 py-4">
+        <h2 className="font-semibold text-white">Poser une question</h2>
+        <p className="mt-0.5 text-sm text-muted">
           Posez vos questions sur ce document, je réponds en langage simple.
         </p>
       </div>
@@ -90,8 +90,8 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
               <div
                 className={`max-w-[82%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
                   msg.role === "user"
-                    ? "bg-blue-600 text-white rounded-br-none"
-                    : "bg-stone-100 text-gray-800 rounded-bl-none"
+                    ? "dc-gradient-bg text-white rounded-br-none"
+                    : "bg-white/10 text-white/90 rounded-bl-none"
                 }`}
               >
                 {msg.content}
@@ -101,11 +101,11 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
 
           {loading && (
             <div className="flex justify-start">
-              <div className="bg-stone-100 rounded-2xl rounded-bl-none px-4 py-3">
+              <div className="bg-white/10 rounded-2xl rounded-bl-none px-4 py-3">
                 <span className="inline-flex gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-stone-400 animate-bounce [animation-delay:0ms]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-stone-400 animate-bounce [animation-delay:150ms]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-stone-400 animate-bounce [animation-delay:300ms]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:0ms]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:150ms]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:300ms]" />
                 </span>
               </div>
             </div>
@@ -122,7 +122,7 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
               key={s}
               onClick={() => envoyer(s)}
               disabled={loading}
-              className="rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm text-gray-700 transition hover:bg-stone-100 hover:border-stone-300 disabled:opacity-50"
+              className="rounded-full border border-border-soft bg-ink px-4 py-2 text-sm text-white/80 transition hover:bg-white/5 hover:border-accent/50 disabled:opacity-50"
             >
               {s}
             </button>
@@ -145,12 +145,12 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
             onChange={(e) => setInput(e.target.value)}
             placeholder="Posez votre question…"
             disabled={loading}
-            className="flex-1 rounded-full border border-stone-300 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:opacity-60"
+            className="flex-1 rounded-full border border-border-soft bg-ink px-4 py-2.5 text-sm text-white outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-60"
           />
           <button
             type="submit"
             disabled={!input.trim() || loading}
-            className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Envoyer
           </button>

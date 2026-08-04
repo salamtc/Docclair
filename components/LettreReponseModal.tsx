@@ -99,24 +99,24 @@ export default function LettreReponseModal({
   const champValide = form.nom.trim() && form.adresse.trim() && form.objet;
 
   const inputCls =
-    "w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500";
+    "w-full rounded-lg border border-border-soft bg-ink px-3 py-2 text-sm text-white placeholder:text-muted outline-none focus:border-accent focus:ring-1 focus:ring-accent";
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="relative w-full max-w-2xl rounded-2xl bg-white shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-2xl rounded-2xl border border-border-soft bg-card shadow-2xl flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-stone-200 px-6 py-4 shrink-0">
+        <div className="flex items-center justify-between border-b border-border-soft px-6 py-4 shrink-0">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-white">
               Générer une lettre de réponse
             </h2>
-            <p className="text-xs text-gray-500 mt-0.5">
-              Destinataire : <span className="font-medium text-gray-700">{organisme}</span>
+            <p className="text-xs text-muted mt-0.5">
+              Destinataire : <span className="font-medium text-white/80">{organisme}</span>
             </p>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-700 transition"
+            className="text-muted hover:text-white transition"
             aria-label="Fermer"
           >
             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -132,7 +132,7 @@ export default function LettreReponseModal({
         <div className="overflow-y-auto flex-1 px-6 py-5">
           {etape === "formulaire" && (
             <div className="space-y-4">
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-muted leading-relaxed">
                 Renseignez vos informations pour générer une lettre formelle
                 adaptée à l&apos;organisme et à votre situation.
               </p>
@@ -140,7 +140,7 @@ export default function LettreReponseModal({
               <div className="space-y-3">
                 {/* Nom */}
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Nom et prénom <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -154,7 +154,7 @@ export default function LettreReponseModal({
 
                 {/* Adresse */}
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Adresse complète <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -170,9 +170,9 @@ export default function LettreReponseModal({
 
                 {/* Référence */}
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Numéro de référence du courrier{" "}
-                    <span className="text-stone-400 font-normal">(facultatif)</span>
+                    <span className="text-muted font-normal">(facultatif)</span>
                   </label>
                   <input
                     type="text"
@@ -187,7 +187,7 @@ export default function LettreReponseModal({
 
                 {/* Objet */}
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
+                  <label className="mb-1 block text-sm font-medium text-white/80">
                     Objet de la réponse <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -195,7 +195,7 @@ export default function LettreReponseModal({
                     onChange={(e) =>
                       setForm({ ...form, objet: e.target.value })
                     }
-                    className={`${inputCls} bg-white`}
+                    className={inputCls}
                   >
                     {OBJETS.map((o) => (
                       <option key={o.value} value={o.value}>
@@ -206,11 +206,11 @@ export default function LettreReponseModal({
                 </div>
 
                 {/* Contexte visible */}
-                <div className="rounded-xl border border-stone-200 bg-stone-50 px-4 py-3">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-stone-400 mb-1">
+                <div className="rounded-xl border border-border-soft bg-ink px-4 py-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted mb-1">
                     Contexte du document
                   </p>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-sm text-white/80 leading-relaxed">
                     {typeDocument} — {explication.slice(0, 160)}
                     {explication.length > 160 ? "…" : ""}
                   </p>
@@ -218,7 +218,7 @@ export default function LettreReponseModal({
               </div>
 
               {erreur && (
-                <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+                <p className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
                   {erreur}
                 </p>
               )}
@@ -226,8 +226,8 @@ export default function LettreReponseModal({
           )}
 
           {etape === "lettre" && lettre && (
-            <div className="rounded-xl border border-stone-200 bg-stone-50 p-4">
-              <pre className="whitespace-pre-wrap font-sans text-sm text-gray-800 leading-relaxed">
+            <div className="rounded-xl border border-border-soft bg-ink p-4">
+              <pre className="whitespace-pre-wrap font-sans text-sm text-white/90 leading-relaxed">
                 {lettre}
               </pre>
             </div>
@@ -235,19 +235,19 @@ export default function LettreReponseModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-stone-200 px-6 py-4 shrink-0">
+        <div className="border-t border-border-soft px-6 py-4 shrink-0">
           {etape === "formulaire" && (
             <div className="flex gap-3">
               <button
                 onClick={onClose}
-                className="flex-1 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-stone-50"
+                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
               >
                 Annuler
               </button>
               <button
                 onClick={generer}
                 disabled={!champValide || loading}
-                className="flex-1 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Génération en cours…" : "Générer la lettre"}
               </button>
@@ -258,19 +258,19 @@ export default function LettreReponseModal({
             <div className="flex flex-col gap-2 sm:flex-row">
               <button
                 onClick={() => setEtape("formulaire")}
-                className="flex-1 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-stone-50"
+                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
               >
                 Modifier
               </button>
               <button
                 onClick={copier}
-                className="flex-1 rounded-full border border-blue-300 bg-blue-50 px-5 py-2.5 text-sm font-medium text-blue-700 transition hover:bg-blue-100"
+                className="flex-1 rounded-full border border-accent/30 bg-accent/10 px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-accent transition hover:bg-accent/20"
               >
                 {copie ? "Copié !" : "Copier la lettre"}
               </button>
               <button
                 onClick={telecharger}
-                className="flex-1 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700"
+                className="flex-1 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90"
               >
                 Télécharger en PDF
               </button>

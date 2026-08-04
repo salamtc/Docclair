@@ -7,9 +7,9 @@ import Link from "next/link";
 import type { Beneficiaire, AnalyseAsso } from "@/lib/supabase";
 
 const urgenceBadge = (u: string) => {
-  if (u === "urgent") return "bg-red-100 text-red-700";
-  if (u === "attention") return "bg-orange-100 text-orange-700";
-  return "bg-stone-100 text-stone-500";
+  if (u === "urgent") return "bg-red-500/15 text-red-400";
+  if (u === "attention") return "bg-orange-500/15 text-orange-400";
+  return "bg-white/10 text-white/60";
 };
 
 const urgenceLabel = (u: string) => {
@@ -136,7 +136,7 @@ export default function BeneficiairePage() {
   if (!isLoaded || loading) {
     return (
       <div className="flex items-center justify-center py-32">
-        <p className="text-sm text-gray-400">Chargement…</p>
+        <p className="text-sm text-muted">Chargement…</p>
       </div>
     );
   }
@@ -144,7 +144,7 @@ export default function BeneficiairePage() {
   if (erreur) {
     return (
       <div className="p-8">
-        <p className="rounded-xl bg-red-50 p-4 text-sm text-red-700">{erreur}</p>
+        <p className="rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-sm text-red-400">{erreur}</p>
       </div>
     );
   }
@@ -154,42 +154,42 @@ export default function BeneficiairePage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <Link href="/asso/beneficiaires" className="text-sm text-gray-500 hover:text-gray-700 transition">
+          <Link href="/asso/beneficiaires" className="text-sm text-muted hover:text-white/85 transition">
             ← Bénéficiaires
           </Link>
-          <h1 className="mt-2 text-2xl font-semibold text-gray-900">
+          <h1 className="mt-2 text-2xl font-semibold text-white">
             {beneficiaire?.prenom} {beneficiaire?.nom}
           </h1>
           {beneficiaire?.numero_dossier && (
-            <p className="mt-0.5 text-sm text-gray-500">N° {beneficiaire.numero_dossier}</p>
+            <p className="mt-0.5 text-sm text-muted">N° {beneficiaire.numero_dossier}</p>
           )}
         </div>
         <button
           onClick={() => setConfirmDelete(true)}
-          className="text-xs text-red-400 hover:text-red-600 transition mt-1"
+          className="text-xs text-red-400 hover:text-red-300 transition mt-1"
         >
           Supprimer le dossier
         </button>
       </div>
 
       {/* Notes internes */}
-      <div className="rounded-2xl border border-stone-200 bg-white p-6">
+      <div className="rounded-2xl border border-border-soft bg-card p-6">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="font-semibold text-gray-900">Notes internes</h2>
-          {notesSaving && <span className="text-xs text-gray-400">Sauvegarde…</span>}
+          <h2 className="font-semibold text-white">Notes internes</h2>
+          {notesSaving && <span className="text-xs text-muted">Sauvegarde…</span>}
         </div>
         <textarea
           value={notes}
           onChange={(e) => { setNotes(e.target.value); saveNotes(e.target.value); }}
           rows={4}
           placeholder="Ajoutez des notes sur la situation de ce bénéficiaire…"
-          className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm text-gray-700 placeholder-stone-400 focus:border-stone-400 focus:outline-none resize-none"
+          className="w-full rounded-xl border border-border-soft bg-ink px-4 py-3 text-sm text-white/85 placeholder-muted focus:border-accent focus:outline-none resize-none"
         />
       </div>
 
       {/* Analyser un document */}
-      <div className="rounded-2xl border border-stone-200 bg-white p-6">
-        <h2 className="font-semibold text-gray-900 mb-4">Analyser un document</h2>
+      <div className="rounded-2xl border border-border-soft bg-card p-6">
+        <h2 className="font-semibold text-white mb-4">Analyser un document</h2>
 
         {uploadMode === "loading" ? (
           <div className="flex items-center justify-center py-8">
@@ -197,15 +197,15 @@ export default function BeneficiairePage() {
               {[0, 1, 2].map((i) => (
                 <span
                   key={i}
-                  className="block h-2 w-2 rounded-full bg-stone-400 animate-bounce"
+                  className="block h-2 w-2 rounded-full bg-muted animate-bounce"
                   style={{ animationDelay: `${i * 0.15}s` }}
                 />
               ))}
             </div>
-            <span className="ml-3 text-sm text-gray-500">Analyse en cours…</span>
+            <span className="ml-3 text-sm text-muted">Analyse en cours…</span>
           </div>
         ) : uploadMode === "done" ? (
-          <p className="text-center py-6 text-sm font-medium text-green-700">
+          <p className="text-center py-6 text-sm font-medium text-emerald-400">
             ✓ Document analysé et ajouté à l&apos;historique
           </p>
         ) : (
@@ -213,13 +213,13 @@ export default function BeneficiairePage() {
             <div className="flex gap-3">
               <button
                 onClick={() => fileRef.current?.click()}
-                className="flex-1 rounded-xl border-2 border-dashed border-stone-300 px-4 py-4 text-sm text-gray-500 hover:border-stone-400 hover:text-gray-700 transition text-center"
+                className="flex-1 rounded-xl border-2 border-dashed border-border-soft px-4 py-4 text-sm text-muted hover:border-accent/60 hover:text-white transition text-center"
               >
                 Déposer un PDF
               </button>
               <button
                 onClick={() => setShowTexte((v) => !v)}
-                className="rounded-xl border border-stone-300 px-4 py-4 text-sm text-gray-500 hover:border-stone-400 hover:text-gray-700 transition"
+                className="rounded-xl border border-border-soft px-4 py-4 text-sm text-muted hover:border-accent/60 hover:text-white transition"
               >
                 Coller du texte
               </button>
@@ -233,12 +233,12 @@ export default function BeneficiairePage() {
                   onChange={(e) => setTexteManuel(e.target.value)}
                   rows={5}
                   placeholder="Collez ici le contenu du courrier…"
-                  className="w-full rounded-xl border border-stone-300 px-4 py-3 text-sm text-gray-700 placeholder-stone-400 focus:border-stone-400 focus:outline-none resize-none"
+                  className="w-full rounded-xl border border-border-soft bg-ink px-4 py-3 text-sm text-white/85 placeholder-muted focus:border-accent focus:outline-none resize-none"
                 />
                 <button
                   onClick={handleTexte}
                   disabled={!texteManuel.trim()}
-                  className="w-full rounded-full bg-stone-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-stone-800 disabled:opacity-40 transition"
+                  className="w-full rounded-full dc-gradient-bg px-4 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90 disabled:opacity-40 transition"
                 >
                   Analyser ce texte
                 </button>
@@ -246,7 +246,7 @@ export default function BeneficiairePage() {
             )}
 
             {uploadErreur && (
-              <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{uploadErreur}</p>
+              <p className="rounded-xl bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">{uploadErreur}</p>
             )}
           </div>
         )}
@@ -254,13 +254,13 @@ export default function BeneficiairePage() {
 
       {/* Historique des analyses */}
       <div>
-        <h2 className="font-semibold text-gray-900 mb-3">
+        <h2 className="font-semibold text-white mb-3">
           Historique des documents ({analyses.length})
         </h2>
 
         {analyses.length === 0 ? (
-          <div className="rounded-2xl border border-stone-200 bg-white p-8 text-center">
-            <p className="text-sm text-gray-400">Aucun document analysé pour ce bénéficiaire.</p>
+          <div className="rounded-2xl border border-border-soft bg-card p-8 text-center">
+            <p className="text-sm text-muted">Aucun document analysé pour ce bénéficiaire.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -279,15 +279,15 @@ export default function BeneficiairePage() {
       {/* Confirm delete */}
       {confirmDelete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
-            <h3 className="font-semibold text-gray-900">Supprimer ce dossier ?</h3>
-            <p className="mt-2 text-sm text-gray-600">
+          <div className="w-full max-w-sm rounded-2xl border border-border-soft bg-card p-6 shadow-2xl">
+            <h3 className="font-semibold text-white">Supprimer ce dossier ?</h3>
+            <p className="mt-2 text-sm text-muted">
               Tous les documents analysés seront définitivement supprimés. Cette action est irréversible.
             </p>
             <div className="mt-5 flex gap-3">
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="flex-1 rounded-full border border-stone-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-stone-50 transition"
+                className="flex-1 rounded-full border border-white/25 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/5 transition"
               >
                 Annuler
               </button>
@@ -325,19 +325,19 @@ function AnalyseRow({
   }
 
   return (
-    <div className="rounded-2xl border border-stone-200 bg-white p-5">
+    <div className="rounded-2xl border border-border-soft bg-card p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-wrap gap-2 items-center">
-          <span className="rounded-full bg-stone-900 px-3 py-1 text-xs font-medium text-white">
+          <span className="rounded-full dc-gradient-bg px-3 py-1 text-xs font-medium text-white">
             {analyse.organisme}
           </span>
-          <span className="text-sm text-gray-600">{analyse.type_document}</span>
+          <span className="text-sm text-muted">{analyse.type_document}</span>
           <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${urgenceBadge(analyse.urgence)}`}>
             {urgenceLabel(analyse.urgence)}
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-muted">
             {new Date(analyse.created_at).toLocaleDateString("fr-FR")}
           </span>
           <label className="flex items-center gap-1.5 cursor-pointer select-none">
@@ -345,15 +345,15 @@ function AnalyseRow({
               type="checkbox"
               checked={analyse.traite}
               onChange={(e) => onToggleTraite(e.target.checked)}
-              className="h-4 w-4 rounded accent-stone-900"
+              className="h-4 w-4 rounded accent-accent"
             />
-            <span className="text-xs text-gray-600">Traité</span>
+            <span className="text-xs text-muted">Traité</span>
           </label>
         </div>
       </div>
 
       {analyse.explication && (
-        <p className="mt-3 text-sm text-gray-600 leading-relaxed">{analyse.explication}</p>
+        <p className="mt-3 text-sm text-muted leading-relaxed">{analyse.explication}</p>
       )}
 
       <div className="mt-3">
@@ -365,12 +365,12 @@ function AnalyseRow({
             autoFocus
             rows={2}
             placeholder="Note interne…"
-            className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm text-gray-700 placeholder-stone-400 focus:border-stone-400 focus:outline-none resize-none"
+            className="w-full rounded-xl border border-border-soft bg-ink px-3 py-2 text-sm text-white/85 placeholder-muted focus:border-accent focus:outline-none resize-none"
           />
         ) : (
           <button
             onClick={() => setEditNote(true)}
-            className="text-xs text-stone-400 hover:text-stone-600 transition text-left"
+            className="text-xs text-muted hover:text-white transition text-left"
           >
             {note ? `📝 ${note}` : "+ Ajouter une note interne"}
           </button>

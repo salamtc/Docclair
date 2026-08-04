@@ -65,17 +65,17 @@ export default function AnalysePage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col bg-stone-50">
+    <div className="flex flex-1 flex-col bg-ink text-white">
       <Navbar />
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-16">
         {!result ? (
           <>
-            <h1 className="mb-8 text-center text-2xl font-semibold text-gray-900">
+            <h1 className="mb-8 text-center text-2xl font-semibold text-white">
               Analysez votre document
             </h1>
             {erreur && (
-              <p className="mb-4 rounded-xl bg-red-50 p-4 text-center text-sm text-red-700">
+              <p className="mb-4 rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-center text-sm text-red-400">
                 {erreur}
               </p>
             )}

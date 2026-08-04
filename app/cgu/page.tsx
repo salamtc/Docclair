@@ -3,18 +3,18 @@ import Navbar from "@/components/Navbar";
 
 export default function CguPage() {
   return (
-    <div className="flex flex-1 flex-col bg-stone-50">
+    <div className="flex flex-1 flex-col bg-ink text-white">
       <Navbar />
       <main className="mx-auto w-full max-w-2xl px-6 py-16">
-        <h1 className="text-3xl font-semibold text-gray-900 mb-2">
+        <h1 className="text-3xl font-semibold text-white mb-2">
           Conditions générales d&apos;utilisation
         </h1>
-        <p className="text-sm text-gray-400 mb-10">Dernière mise à jour : août 2025</p>
+        <p className="text-sm text-muted mb-10">Dernière mise à jour : août 2025</p>
 
-        <div className="prose prose-stone max-w-none space-y-8 text-sm leading-relaxed text-gray-700">
+        <div className="prose prose-invert max-w-none space-y-8 text-sm leading-relaxed text-white/80">
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">1. Présentation du service</h2>
+            <h2 className="text-base font-semibold text-white mb-2">1. Présentation du service</h2>
             <p>
               DocClair est un service en ligne édité par DocClair SAS, permettant à toute personne physique ou morale (ci-après « l&apos;Utilisateur ») d&apos;obtenir une explication simplifiée de ses courriers administratifs grâce à des modèles d&apos;intelligence artificielle, et de générer des lettres de réponse adaptées.
             </p>
@@ -24,7 +24,7 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">2. Accès et inscription</h2>
+            <h2 className="text-base font-semibold text-white mb-2">2. Accès et inscription</h2>
             <p>
               DocClair propose une analyse gratuite sans inscription. Au-delà, l&apos;accès complet au service requiert la création d&apos;un compte et la souscription à un abonnement payant. L&apos;inscription est réservée aux personnes majeures ou aux représentants légaux d&apos;une personne morale.
             </p>
@@ -34,7 +34,7 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">3. Description des offres</h2>
+            <h2 className="text-base font-semibold text-white mb-2">3. Description des offres</h2>
             <p>DocClair propose trois formules d&apos;abonnement :</p>
             <ul className="mt-2 ml-4 list-disc space-y-1">
               <li><strong>Particulier (9€/mois)</strong> — analyses illimitées, génération de lettres, chat conseiller, export comptable.</li>
@@ -47,7 +47,7 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">4. Modalités de paiement et résiliation</h2>
+            <h2 className="text-base font-semibold text-white mb-2">4. Modalités de paiement et résiliation</h2>
             <p>
               Les abonnements sont facturés mensuellement par prélèvement automatique via Stripe, prestataire de paiement agréé. L&apos;Utilisateur peut résilier son abonnement à tout moment depuis son espace «&nbsp;Mon compte&nbsp;». La résiliation prend effet à la fin de la période mensuelle en cours.
             </p>
@@ -57,7 +57,7 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">5. Utilisation du service et obligations</h2>
+            <h2 className="text-base font-semibold text-white mb-2">5. Utilisation du service et obligations</h2>
             <p>L&apos;Utilisateur s&apos;engage à :</p>
             <ul className="mt-2 ml-4 list-disc space-y-1">
               <li>N&apos;uploader que des documents lui appartenant ou pour lesquels il dispose d&apos;une autorisation.</li>
@@ -70,7 +70,7 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">6. Limitation de responsabilité</h2>
+            <h2 className="text-base font-semibold text-white mb-2">6. Limitation de responsabilité</h2>
             <p>
               DocClair est un outil d&apos;aide à la compréhension. Les informations et lettres générées ont une valeur indicative et ne constituent pas un conseil juridique. DocClair décline toute responsabilité pour les décisions prises par l&apos;Utilisateur sur la base des analyses produites.
             </p>
@@ -83,7 +83,7 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">7. Propriété intellectuelle</h2>
+            <h2 className="text-base font-semibold text-white mb-2">7. Propriété intellectuelle</h2>
             <p>
               L&apos;ensemble des éléments constitutifs du service (interface, logo, code source, textes, algorithmes) sont la propriété exclusive de DocClair SAS et sont protégés par les lois françaises et internationales relatives à la propriété intellectuelle. Toute reproduction ou utilisation sans autorisation expresse est interdite.
             </p>
@@ -93,10 +93,10 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">8. Données personnelles</h2>
+            <h2 className="text-base font-semibold text-white mb-2">8. Données personnelles</h2>
             <p>
               Le traitement des données personnelles est décrit dans notre{" "}
-              <Link href="/confidentialite" className="text-blue-600 hover:underline">
+              <Link href="/confidentialite" className="text-accent hover:underline">
                 Politique de confidentialité
               </Link>
               , conforme au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.
@@ -104,20 +104,20 @@ export default function CguPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">9. Droit applicable et juridiction</h2>
+            <h2 className="text-base font-semibold text-white mb-2">9. Droit applicable et juridiction</h2>
             <p>
               Les présentes conditions sont régies par le droit français. En cas de litige, et après tentative de résolution amiable, compétence est attribuée aux tribunaux compétents du ressort du siège de DocClair SAS. L&apos;Utilisateur peut également recourir à la médiation de la consommation via la plateforme européenne{" "}
-              <a href="https://ec.europa.eu/consumers/odr" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
+              <a href="https://ec.europa.eu/consumers/odr" className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
                 ec.europa.eu/consumers/odr
               </a>.
             </p>
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-gray-900 mb-2">10. Contact</h2>
+            <h2 className="text-base font-semibold text-white mb-2">10. Contact</h2>
             <p>
               Pour toute question relative aux présentes conditions :{" "}
-              <a href="mailto:contact@docclair.fr" className="text-blue-600 hover:underline">
+              <a href="mailto:contact@docclair.fr" className="text-accent hover:underline">
                 contact@docclair.fr
               </a>
             </p>

@@ -22,9 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={frFR}>
+    <ClerkProvider
+      localization={frFR}
+      appearance={{
+        variables: {
+          colorPrimary: "#4F6EF7",
+          colorBackground: "#1A1D27",
+          borderRadius: "0.75rem",
+        },
+      }}
+    >
       <html lang="fr" className={`${inter.variable} h-full antialiased`}>
-        <body className="min-h-full flex flex-col bg-stone-50 text-gray-900">
+        <body className="min-h-full flex flex-col bg-ink text-white">
           {children}
         </body>
       </html>
