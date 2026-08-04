@@ -66,23 +66,62 @@ function extractJson(text: string): string {
   return match ? match[0] : text;
 }
 
+function parseReponse(text: string): AnalyseResult | AnalyseErreur {
+  return JSON.parse(extractJson(text));
+}
+
 export async function analyserDocument(
   texte: string
 ): Promise<AnalyseResult | AnalyseErreur> {
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 1400,
+    system: PROMPT_SYSTEME,
     messages: [
       {
         role: "user",
         content: `Voici le contenu d'un document administratif. Analyse-le et réponds en JSON :\n\n${texte}`,
       },
     ],
-    system: PROMPT_SYSTEME,
   });
 
   const content = response.content[0];
   if (content.type !== "text") throw new Error("Réponse inattendue");
+  return parseReponse(content.text);
+}
 
-  return JSON.parse(extractJson(content.text));
+export type ImageMediaType = "image/jpeg" | "image/png" | "image/webp" | "image/gif";
+
+export async function analyserImage(
+  imageBuffer: Buffer,
+  mediaType: ImageMediaType
+): Promise<AnalyseResult | AnalyseErreur> {
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 1400,
+    system: PROMPT_SYSTEME,
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "image",
+            source: {
+              type: "base64",
+              media_type: mediaType,
+              data: imageBuffer.toString("base64"),
+            },
+          },
+          {
+            type: "text",
+            text: "Voici l'image d'un document administratif. Analyse-le et réponds en JSON :",
+          },
+        ],
+      },
+    ],
+  });
+
+  const content = response.content[0];
+  if (content.type !== "text") throw new Error("Réponse inattendue");
+  return parseReponse(content.text);
 }

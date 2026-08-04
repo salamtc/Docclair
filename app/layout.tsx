@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { frFR } from "@clerk/localizations";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={frFR}>
       <html lang="fr" className={`${inter.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col bg-stone-50 text-gray-900">
           {children}

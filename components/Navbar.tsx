@@ -26,9 +26,6 @@ export default function Navbar() {
             </SignInButton>
           </Show>
           <Show when="signed-in">
-            <Link href="/mon-compte" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition">
-              Mon compte
-            </Link>
             <UserButton />
           </Show>
         </div>

@@ -58,9 +58,9 @@ const fonctionnalites = [
   },
   {
     icone: "🤝",
-    titre: "Pour les associations et assistantes sociales",
+    titre: "Pour les professionnels du social",
     texte:
-      "Vous aidez plusieurs personnes ? Gérez tous leurs courriers depuis un seul espace, avec un historique par personne.",
+      "Assistantes sociales, associations, CCAS : gérez les courriers de vos bénéficiaires depuis un espace dédié. Chaque personne a son propre dossier et historique.",
   },
 ];
 

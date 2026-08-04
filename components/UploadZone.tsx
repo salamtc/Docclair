@@ -13,15 +13,24 @@ export default function UploadZone({ onAnalyser, loading }: UploadZoneProps) {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const TYPES_ACCEPTES = [
+    "application/pdf",
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/gif",
+  ];
+
   const handleFiles = useCallback((files: FileList | null) => {
     const f = files?.[0];
     if (!f) return;
-    if (f.type !== "application/pdf") {
-      alert("Seuls les fichiers PDF sont acceptés.");
+    if (!TYPES_ACCEPTES.includes(f.type)) {
+      alert("Seuls les fichiers PDF et images (JPG, PNG, WEBP) sont acceptés.");
       return;
     }
     setFichier(f);
     setTexte("");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -51,14 +60,14 @@ export default function UploadZone({ onAnalyser, loading }: UploadZoneProps) {
         <input
           ref={inputRef}
           type="file"
-          accept="application/pdf"
+          accept="application/pdf,image/jpeg,image/png,image/webp,image/gif"
           className="hidden"
           onChange={(e) => handleFiles(e.target.files)}
         />
         <p className="text-base font-medium text-gray-900">
-          {fichier ? fichier.name : "Glissez votre PDF ici, ou cliquez pour en choisir un"}
+          {fichier ? fichier.name : "Glissez votre PDF ou photo ici, ou cliquez pour choisir"}
         </p>
-        <p className="mt-1 text-sm text-gray-500">PDF uniquement, 10 Mo max</p>
+        <p className="mt-1 text-sm text-gray-500">PDF, JPG, PNG — 10 Mo max</p>
       </div>
 
       <div className="flex items-center gap-3 text-sm text-gray-400">
