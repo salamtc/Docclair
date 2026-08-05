@@ -9,17 +9,23 @@ interface PaywallModalProps {
 export default function PaywallModal({ onClose }: PaywallModalProps) {
   const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = async () => {
+  const handleAbonnement = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/checkout", { method: "POST" });
-      const data = await res.json();
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: "standard" }),
+      });
+      const data = await response.json();
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setLoading(false);
+        alert(data.erreur ?? "Erreur lors de la redirection vers le paiement");
       }
     } catch {
+      alert("Erreur de connexion. Réessayez.");
+    } finally {
       setLoading(false);
     }
   };
@@ -47,16 +53,43 @@ export default function PaywallModal({ onClose }: PaywallModalProps) {
         </div>
 
         <button
-          onClick={handleSubscribe}
+          type="button"
+          onClick={handleAbonnement}
           disabled={loading}
-          className="mt-6 w-full rounded-full dc-gradient-bg px-6 py-3 text-base font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-40"
+          className="mt-6 flex w-full items-center justify-center gap-2 rounded-full dc-gradient-bg px-6 py-3 text-base font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {loading ? "Redirection..." : "Commencer pour 9 €/mois"}
+          {loading ? (
+            <>
+              <svg
+                className="h-4 w-4 animate-spin text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                />
+              </svg>
+              Chargement...
+            </>
+          ) : (
+            "M'abonner pour 9 €/mois"
+          )}
         </button>
 
         <button
           onClick={onClose}
-          className="mt-3 w-full text-center text-sm text-muted hover:text-white"
+          disabled={loading}
+          className="mt-3 w-full text-center text-sm text-muted hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           Non merci
         </button>
