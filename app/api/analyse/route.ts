@@ -35,50 +35,65 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ quotaDepasse: true }, { status: 402 });
     }
 
-    const formData = await request.formData();
-    const fichier = formData.get("fichier");
-    const texteBrut = formData.get("texte");
+    const contentType = request.headers.get("content-type") || "";
 
-    let result: Awaited<ReturnType<typeof analyserDocument>>;
+    let result: Awaited<ReturnType<typeof analyserDocument>> | undefined;
     let texteExtrait: string | null = null;
 
-    if (fichier instanceof File) {
-      if (fichier.size > LIMITE_TAILLE_OCTETS) {
-        return NextResponse.json(
-          { erreur: "Fichier trop volumineux. La limite est de 10 Mo." },
-          { status: 400 }
-        );
-      }
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      const fichier = formData.get("fichier");
+      const texteBrut = formData.get("texte");
 
-      const buffer = Buffer.from(await fichier.arrayBuffer());
-
-      if (TYPES_IMAGE.includes(fichier.type as ImageMediaType)) {
-        try {
-          result = await analyserImage(buffer, fichier.type as ImageMediaType);
-        } catch (err) {
-          console.error("[analyse] Erreur analyse image:", err);
+      if (fichier instanceof File) {
+        if (fichier.size > LIMITE_TAILLE_OCTETS) {
           return NextResponse.json(
-            { erreur: "Impossible d'analyser cette image. Essayez de copier-coller le texte directement." },
-            { status: 422 }
-          );
-        }
-      } else {
-        try {
-          texteExtrait = await extraireTextePdf(buffer);
-        } catch (err) {
-          console.error("[analyse] Erreur pdf-parse:", err);
-          return NextResponse.json(
-            { erreur: "Impossible de lire ce fichier. Essayez de copier-coller le texte directement." },
+            { erreur: "Fichier trop volumineux. La limite est de 10 Mo." },
             { status: 400 }
           );
         }
-        result = await analyserDocument(texteExtrait);
+
+        const buffer = Buffer.from(await fichier.arrayBuffer());
+
+        if (TYPES_IMAGE.includes(fichier.type as ImageMediaType)) {
+          try {
+            result = await analyserImage(buffer, fichier.type as ImageMediaType);
+          } catch (err) {
+            console.error("[analyse] Erreur analyse image:", err);
+            return NextResponse.json(
+              { erreur: "Impossible d'analyser cette image. Essayez de copier-coller le texte directement." },
+              { status: 422 }
+            );
+          }
+        } else {
+          try {
+            texteExtrait = await extraireTextePdf(buffer);
+          } catch (err) {
+            return NextResponse.json(
+              { erreur: (err as Error).message },
+              { status: 400 }
+            );
+          }
+        }
+      } else if (typeof texteBrut === "string" && texteBrut.trim().length > 0) {
+        texteExtrait = texteBrut.trim();
+      } else {
+        return NextResponse.json({ erreur: "Aucun document fourni." }, { status: 400 });
       }
-    } else if (typeof texteBrut === "string" && texteBrut.trim().length > 0) {
-      texteExtrait = texteBrut;
-      result = await analyserDocument(texteExtrait);
     } else {
-      return NextResponse.json({ erreur: "Aucun document fourni." }, { status: 400 });
+      const body = await request.json().catch(() => ({}));
+      texteExtrait = typeof body.texte === "string" ? body.texte.trim() : "";
+    }
+
+    // À ce stade, soit `result` a déjà été fixé (analyse d'image), soit `texteExtrait` contient le texte à analyser.
+    if (result === undefined) {
+      if (texteExtrait === null || texteExtrait.length < 20) {
+        return NextResponse.json(
+          { erreur: "Le document est trop court ou vide." },
+          { status: 400 }
+        );
+      }
+      result = await analyserDocument(texteExtrait);
     }
 
     if ("erreur" in result) {
