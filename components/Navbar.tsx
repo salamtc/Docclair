@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Show, SignInButton, UserButton } from "@clerk/nextjs";
+import { Show, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
@@ -13,20 +13,36 @@ export default function Navbar() {
           <Link href="/tarifs" className="text-sm text-muted transition hover:text-white">
             Tarifs
           </Link>
+
+          <Show when="signed-in">
+            <Link href="/historique" className="text-sm text-muted transition hover:text-white">
+              Historique
+            </Link>
+          </Show>
+
           <Link
             href="/analyse"
             className="rounded-full dc-gradient-bg px-4 py-2 text-[15px] font-semibold tracking-[0.3px] text-white transition hover:opacity-90"
           >
             Analyser un document
           </Link>
+
           <Show when="signed-out">
-            <SignInButton mode="modal">
-              <button className="text-sm text-muted transition hover:text-white">
-                Se connecter
-              </button>
-            </SignInButton>
+            <Link href="/sign-in" className="text-sm text-muted transition hover:text-white">
+              Connexion
+            </Link>
+            <Link
+              href="/sign-up"
+              className="rounded-full border border-white/25 px-4 py-2 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
+            >
+              Commencer gratuitement
+            </Link>
           </Show>
+
           <Show when="signed-in">
+            <Link href="/mon-compte" className="text-sm text-muted transition hover:text-white">
+              Mon compte
+            </Link>
             <UserButton />
           </Show>
         </div>

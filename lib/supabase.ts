@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { Comptabilite } from "./claude";
+import type { AnalyseResult, Comptabilite } from "./claude";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,7 +25,8 @@ export async function enregistrerAnalyse(
   ipAddress: string,
   organisme: string,
   typeDocument: string,
-  comptabilite?: Comptabilite
+  comptabilite?: Comptabilite,
+  resultat?: AnalyseResult
 ) {
   const { error } = await supabase.from("analyses").insert({
     user_id: userId,
@@ -37,6 +38,7 @@ export async function enregistrerAnalyse(
     sens: comptabilite?.sens ?? null,
     date_echeance: comptabilite?.date_echeance ?? null,
     date_courrier: comptabilite?.date_courrier ?? null,
+    resultat: resultat ?? null,
   });
 
   if (error) throw error;
@@ -52,6 +54,25 @@ export async function obtenirAnalysesFiscales(userId: string) {
 
   if (error) throw error;
   return data ?? [];
+}
+
+export interface DocumentHistorique {
+  id: string;
+  created_at: string;
+  organisme: string;
+  type_document: string;
+  resultat: AnalyseResult | null;
+}
+
+export async function obtenirToutesLesAnalyses(userId: string): Promise<DocumentHistorique[]> {
+  const { data, error } = await supabase
+    .from("analyses")
+    .select("id, created_at, organisme, type_document, resultat")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as DocumentHistorique[];
 }
 
 export async function estAbonneActif(userId: string): Promise<boolean> {

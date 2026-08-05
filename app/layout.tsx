@@ -10,10 +10,42 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL || "https://docclair-f3nlop900-salhi-tc.vercel.app";
+
 export const metadata: Metadata = {
-  title: "DocClair — Comprenez enfin vos courriers administratifs",
+  metadataBase: new URL(APP_URL),
+  title: "DocClair — Comprendre vos courriers administratifs",
   description:
-    "DocClair lit vos courriers administratifs (CAF, impôts, sécu, banque, huissier...) et vous dit exactement quoi faire, en 30 secondes.",
+    "DocClair analyse vos courriers CAF, impôts, banque et vous explique en langage simple ce que vous devez faire. Essai gratuit, sans inscription.",
+  keywords: [
+    "courrier administratif",
+    "CAF",
+    "impôts",
+    "lettre administrative",
+    "comprendre courrier",
+    "contestation CAF",
+    "trop perçu",
+    "lettre de contestation",
+  ],
+  openGraph: {
+    title: "DocClair — Vos courriers expliqués en 30 secondes",
+    description:
+      "Analysez gratuitement votre courrier administratif. CAF, impôts, banque, huissier — on vous dit quoi faire.",
+    url: APP_URL,
+    siteName: "DocClair",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DocClair — Vos courriers expliqués en 30 secondes",
+    description: "Analysez gratuitement votre courrier administratif en 30 secondes.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

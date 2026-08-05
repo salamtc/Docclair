@@ -101,13 +101,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(result, { status: 422 });
     }
 
-    await enregistrerAnalyse(
-      userId,
-      ipAddress,
-      result.organisme,
-      result.type_document,
-      result.comptabilite
-    );
+    try {
+      await enregistrerAnalyse(
+        userId,
+        ipAddress,
+        result.organisme,
+        result.type_document,
+        result.comptabilite,
+        result
+      );
+    } catch (err) {
+      // L'échec de l'enregistrement (ex: colonne manquante avant migration) ne
+      // doit jamais priver l'utilisateur du résultat déjà obtenu de Claude.
+      console.error("[analyse] Erreur enregistrement (non bloquant):", err);
+    }
 
     return NextResponse.json({ ...result, texte_extrait: texteExtrait ?? "" });
   } catch (error: any) {

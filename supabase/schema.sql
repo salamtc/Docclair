@@ -11,7 +11,9 @@ create table analyses (
   montant numeric,
   sens text,             -- 'à payer' | 'remboursement' | null
   date_echeance text,
-  date_courrier text
+  date_courrier text,
+  -- Résultat Claude complet (v3), pour la page /historique ("Revoir l'analyse")
+  resultat jsonb
 );
 
 -- Table abonnements
@@ -34,6 +36,9 @@ create table abonnements (
 --   add column if not exists sens text,
 --   add column if not exists date_echeance text,
 --   add column if not exists date_courrier text;
+
+-- Migration v3 : à exécuter dans le SQL Editor Supabase pour activer /historique
+alter table analyses add column if not exists resultat jsonb;
 
 -- ─── Espace aidant ────────────────────────────────────────────────────────────
 
