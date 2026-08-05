@@ -25,15 +25,16 @@ export async function POST(request: NextRequest) {
     const { userId } = await auth();
     const ipAddress = getIpAddress(request);
 
-    if (userId) {
-      if (!(await estAbonneActif(userId))) {
-        if (await aDejaUtiliseAnalyseGratuite(userId, ipAddress)) {
-          return NextResponse.json({ quotaDepasse: true }, { status: 402 });
-        }
-      }
-    } else if (await aDejaUtiliseAnalyseGratuite(null, ipAddress)) {
-      return NextResponse.json({ quotaDepasse: true }, { status: 402 });
-    }
+    // TEMPORAIRE - désactivé pour les tests
+    // if (userId) {
+    //   if (!(await estAbonneActif(userId))) {
+    //     if (await aDejaUtiliseAnalyseGratuite(userId, ipAddress)) {
+    //       return NextResponse.json({ quotaDepasse: true }, { status: 402 });
+    //     }
+    //   }
+    // } else if (await aDejaUtiliseAnalyseGratuite(null, ipAddress)) {
+    //   return NextResponse.json({ quotaDepasse: true }, { status: 402 });
+    // }
 
     const contentType = request.headers.get("content-type") || "";
 
