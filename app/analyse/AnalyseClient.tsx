@@ -36,13 +36,13 @@ export default function AnalyseClient() {
         body: formData,
       });
 
-      if (res.status === 402) {
+      const data = await res.json();
+
+      if (res.status === 403 && data.erreur === "quota_depasse") {
         setAfficherPaywall(true);
         setLoading(false);
         return;
       }
-
-      const data = await res.json();
 
       if (!res.ok || data.erreur) {
         setErreur(data.erreur ?? "Une erreur est survenue.");

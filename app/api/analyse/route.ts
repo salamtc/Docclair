@@ -25,16 +25,15 @@ export async function POST(request: NextRequest) {
     const { userId } = await auth();
     const ipAddress = getIpAddress(request);
 
-    // TEMPORAIRE - désactivé pour les tests
-    // if (userId) {
-    //   if (!(await estAbonneActif(userId))) {
-    //     if (await aDejaUtiliseAnalyseGratuite(userId, ipAddress)) {
-    //       return NextResponse.json({ quotaDepasse: true }, { status: 402 });
-    //     }
-    //   }
-    // } else if (await aDejaUtiliseAnalyseGratuite(null, ipAddress)) {
-    //   return NextResponse.json({ quotaDepasse: true }, { status: 402 });
-    // }
+    if (userId) {
+      if (!(await estAbonneActif(userId))) {
+        if (await aDejaUtiliseAnalyseGratuite(userId, ipAddress)) {
+          return NextResponse.json({ erreur: "quota_depasse" }, { status: 403 });
+        }
+      }
+    } else if (await aDejaUtiliseAnalyseGratuite(null, ipAddress)) {
+      return NextResponse.json({ erreur: "quota_depasse" }, { status: 403 });
+    }
 
     const contentType = request.headers.get("content-type") || "";
 

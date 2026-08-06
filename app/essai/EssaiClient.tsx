@@ -23,6 +23,14 @@ export default function EssaiClient() {
       const res = await fetch("/api/analyse", { method: "POST", body: formData });
       const data = await res.json();
 
+      if (res.status === 403 && data.erreur === "quota_depasse") {
+        setErreur(
+          "Vous avez déjà utilisé votre analyse gratuite sans compte. Créez un compte gratuit pour continuer."
+        );
+        setLoading(false);
+        return;
+      }
+
       if (!res.ok || data.erreur) {
         setErreur(data.erreur ?? "Une erreur est survenue.");
         setLoading(false);
