@@ -62,7 +62,7 @@ export default function MonComptePage() {
         ) : !isSignedIn ? (
           <div className="rounded-2xl border border-border-soft bg-card p-8 text-center">
             <p className="text-muted mb-4">Connectez-vous pour accéder à votre compte.</p>
-            <Link href="/analyse" className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-medium text-white hover:opacity-90">
+            <Link href="/analyse" className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-medium text-white hover:opacity-90">
               Se connecter
             </Link>
           </div>
@@ -113,14 +113,14 @@ export default function MonComptePage() {
                   <div className="pt-3 border-t border-border-soft space-y-2">
                     <Link
                       href={planLien[planKey] ?? "/analyse"}
-                      className="flex w-full items-center justify-center rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition"
+                      className="flex w-full items-center justify-center rounded-full dc-gradient-bg px-5 py-3 text-sm font-medium text-white hover:opacity-90 transition"
                     >
                       Accéder à mon espace
                     </Link>
                     <button
                       onClick={ouvrirPortail}
                       disabled={portalLoading}
-                      className="flex w-full items-center justify-center rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-medium text-white hover:bg-ink text-white transition disabled:opacity-60"
+                      className="flex w-full items-center justify-center rounded-full border border-white/25 bg-transparent px-5 py-3 text-sm font-medium text-white hover:bg-ink text-white transition disabled:opacity-60"
                     >
                       {portalLoading ? "Redirection…" : "Gérer ou résilier mon abonnement"}
                     </button>
@@ -133,7 +133,7 @@ export default function MonComptePage() {
                   </p>
                   <Link
                     href="/tarifs"
-                    className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition"
+                    className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-medium text-white hover:opacity-90 transition"
                   >
                     Voir les offres
                   </Link>

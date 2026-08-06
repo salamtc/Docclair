@@ -98,7 +98,7 @@ export default function HistoriqueClient() {
           </div>
           <button
             onClick={exporterFiscalCsv}
-            className="shrink-0 rounded-full border border-white/25 px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
+            className="shrink-0 rounded-full border border-white/25 px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
           >
             Exporter mes documents fiscaux (.csv)
           </button>
@@ -115,7 +115,7 @@ export default function HistoriqueClient() {
             <p className="text-muted text-sm mb-4">Aucun document analysé pour l&apos;instant.</p>
             <a
               href="/analyse"
-              className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90"
+              className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90"
             >
               Analyser un document
             </a>
@@ -170,7 +170,7 @@ export default function HistoriqueClient() {
                           <button
                             onClick={() => setDocOuvert(doc)}
                             disabled={!doc.resultat}
-                            className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-semibold tracking-[0.3px] text-accent transition hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40"
+                            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-accent/30 bg-accent/10 px-4 text-xs font-semibold tracking-[0.3px] text-accent transition hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40"
                             title={doc.resultat ? undefined : "Analyse non disponible pour ce document"}
                           >
                             Revoir l&apos;analyse
@@ -178,7 +178,7 @@ export default function HistoriqueClient() {
                           <button
                             onClick={() => telechargerDocument(doc)}
                             disabled={!doc.resultat}
-                            className="rounded-full border border-white/25 px-3 py-1.5 text-xs font-semibold tracking-[0.3px] text-white transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
+                            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/25 px-4 text-xs font-semibold tracking-[0.3px] text-white transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
                           >
                             Télécharger
                           </button>

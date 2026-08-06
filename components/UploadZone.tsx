@@ -51,17 +51,23 @@ export default function UploadZone({ onAnalyser, loading }: UploadZoneProps) {
         onDragLeave={() => setDragActive(false)}
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
-        className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-12 text-center transition ${
+        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-12 text-center transition ${
           dragActive
             ? "border-accent bg-accent/10"
             : "border-border-soft bg-card hover:border-accent/60"
         }`}
       >
+        {/*
+          iOS Safari peut ignorer un .click() programmatique sur un input
+          caché avec display:none. On le garde dans le flux (opacity-0 +
+          position absolute) plutôt que "hidden" pour que le picker natif
+          s'ouvre de façon fiable sur iPhone/iPad.
+        */}
         <input
           ref={inputRef}
           type="file"
           accept="application/pdf,image/jpeg,image/png,image/webp,image/gif"
-          className="hidden"
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           onChange={(e) => handleFiles(e.target.files)}
         />
         <p className="text-base font-medium text-white">

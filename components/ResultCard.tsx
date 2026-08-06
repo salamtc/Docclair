@@ -164,7 +164,7 @@ export default function ResultCard({ result, onReset }: ResultCardProps) {
               </div>
               <button
                 onClick={() => setModalOuverte(true)}
-                className="shrink-0 rounded-full bg-red-600 px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-red-500"
+                className="shrink-0 rounded-full bg-red-600 px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-red-500"
               >
                 Contester ce courrier
               </button>
@@ -186,7 +186,7 @@ export default function ResultCard({ result, onReset }: ResultCardProps) {
               </div>
               <button
                 onClick={() => setModalEmployeurOuverte(true)}
-                className="shrink-0 rounded-full bg-amber-600 px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-amber-500"
+                className="shrink-0 rounded-full bg-amber-600 px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-amber-500"
               >
                 Contester la réclamation
               </button>

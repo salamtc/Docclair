@@ -65,12 +65,18 @@ export default function AssoLayout({ children }: { children: React.ReactNode }) 
       </aside>
 
       {/* Mobile header */}
-      <div className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between border-b border-border-soft/60 bg-ink-alt px-4 py-3 md:hidden">
-        <span className="text-sm font-semibold text-white">Espace aidant</span>
-        <div className="flex items-center gap-3">
-          <Link href="/asso" className="text-xs text-muted">Tableau</Link>
-          <Link href="/asso/beneficiaires" className="text-xs text-muted">Bénéficiaires</Link>
-          <UserButton />
+      <div className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between border-b border-border-soft/60 bg-ink-alt px-2 md:hidden">
+        <span className="pl-2 text-sm font-semibold text-white">Espace aidant</span>
+        <div className="flex items-center gap-1">
+          <Link href="/asso" className="inline-flex min-h-[44px] items-center px-2.5 text-xs text-muted">
+            Tableau
+          </Link>
+          <Link href="/asso/beneficiaires" className="inline-flex min-h-[44px] items-center px-2.5 text-xs text-muted">
+            Bénéficiaires
+          </Link>
+          <div className="flex min-h-[44px] items-center pl-1">
+            <UserButton />
+          </div>
         </div>
       </div>
 

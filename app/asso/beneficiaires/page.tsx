@@ -42,7 +42,7 @@ export default function BeneficiairesPage() {
         </div>
         <Link
           href="/asso/beneficiaires/nouveau"
-          className="shrink-0 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90 transition"
+          className="shrink-0 rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90 transition"
         >
           + Nouveau bénéficiaire
         </Link>
@@ -55,7 +55,7 @@ export default function BeneficiairesPage() {
           <p className="text-muted text-sm mb-4">Aucun bénéficiaire enregistré.</p>
           <Link
             href="/asso/beneficiaires/nouveau"
-            className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90"
+            className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90"
           >
             Créer le premier dossier
           </Link>
@@ -90,7 +90,7 @@ export default function BeneficiairesPage() {
                   <td className="px-4 py-3">
                     <Link
                       href={`/asso/beneficiaires/${b.id}`}
-                      className="rounded-full dc-gradient-bg px-3 py-1.5 text-xs font-semibold tracking-[0.3px] text-white hover:opacity-90 transition"
+                      className="inline-flex min-h-[44px] items-center justify-center rounded-full dc-gradient-bg px-4 text-xs font-semibold tracking-[0.3px] text-white hover:opacity-90 transition"
                     >
                       Ouvrir
                     </Link>

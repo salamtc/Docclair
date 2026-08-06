@@ -240,14 +240,14 @@ export default function LettreReponseModal({
             <div className="flex gap-3">
               <button
                 onClick={onClose}
-                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
+                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
               >
                 Annuler
               </button>
               <button
                 onClick={generer}
                 disabled={!champValide || loading}
-                className="flex-1 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Génération en cours…" : "Générer la lettre"}
               </button>
@@ -258,19 +258,19 @@ export default function LettreReponseModal({
             <div className="flex flex-col gap-2 sm:flex-row">
               <button
                 onClick={() => setEtape("formulaire")}
-                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
+                className="flex-1 rounded-full border border-white/25 bg-transparent px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:bg-white/5"
               >
                 Modifier
               </button>
               <button
                 onClick={copier}
-                className="flex-1 rounded-full border border-accent/30 bg-accent/10 px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-accent transition hover:bg-accent/20"
+                className="flex-1 rounded-full border border-accent/30 bg-accent/10 px-5 py-3 text-sm font-semibold tracking-[0.3px] text-accent transition hover:bg-accent/20"
               >
                 {copie ? "Copié !" : "Copier la lettre"}
               </button>
               <button
                 onClick={telecharger}
-                className="flex-1 rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90"
+                className="flex-1 rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90"
               >
                 Télécharger en PDF
               </button>

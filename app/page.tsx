@@ -185,10 +185,10 @@ export default function Home() {
     <div className="bg-ink text-white">
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-border-soft/60 bg-ink/80 backdrop-blur-lg">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="h-6 w-6 rounded-md dc-gradient-bg" />
-            <span className="text-lg font-bold tracking-tight text-white">DocClair</span>
+        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+          <Link href="/" className="flex shrink-0 items-center gap-2">
+            <span className="h-6 w-6 shrink-0 rounded-md dc-gradient-bg" />
+            <span className="text-base font-bold tracking-tight text-white sm:text-lg">DocClair</span>
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -205,7 +205,7 @@ export default function Home() {
 
           <Link
             href="/analyse"
-            className="rounded-full dc-gradient-bg px-5 py-2.5 text-[15px] font-semibold tracking-[0.3px] text-white transition hover:opacity-90"
+            className="inline-flex min-h-[44px] shrink-0 items-center whitespace-nowrap rounded-full dc-gradient-bg px-4 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 sm:px-5 sm:text-[15px]"
           >
             Commencer gratuitement
           </Link>

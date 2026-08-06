@@ -55,7 +55,7 @@ export default function AssoDashboard() {
       <div className="flex items-center justify-center py-32">
         <div className="text-center">
           <p className="text-muted mb-4">Connectez-vous pour accéder à l&apos;espace aidant.</p>
-          <Link href="/analyse" className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90">
+          <Link href="/analyse" className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90">
             Se connecter
           </Link>
         </div>
@@ -106,7 +106,7 @@ export default function AssoDashboard() {
           <p className="text-muted text-sm mb-4">Aucun document urgent en attente. Tout est sous contrôle ✓</p>
           <Link
             href="/asso/beneficiaires"
-            className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90"
+            className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90"
           >
             Voir les bénéficiaires
           </Link>
@@ -144,7 +144,7 @@ export default function AssoDashboard() {
                     <td className="px-4 py-3">
                       <Link
                         href={`/asso/beneficiaires/${doc.beneficiaire_id}`}
-                        className="rounded-full dc-gradient-bg px-3 py-1.5 text-xs font-semibold tracking-[0.3px] text-white hover:opacity-90 transition"
+                        className="inline-flex min-h-[44px] items-center justify-center rounded-full dc-gradient-bg px-4 text-xs font-semibold tracking-[0.3px] text-white hover:opacity-90 transition"
                       >
                         Ouvrir
                       </Link>

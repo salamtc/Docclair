@@ -238,7 +238,7 @@ export default function BeneficiairePage() {
                 <button
                   onClick={handleTexte}
                   disabled={!texteManuel.trim()}
-                  className="w-full rounded-full dc-gradient-bg px-4 py-2.5 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90 disabled:opacity-40 transition"
+                  className="w-full rounded-full dc-gradient-bg px-4 py-3 text-sm font-semibold tracking-[0.3px] text-white hover:opacity-90 disabled:opacity-40 transition"
                 >
                   Analyser ce texte
                 </button>
@@ -287,13 +287,13 @@ export default function BeneficiairePage() {
             <div className="mt-5 flex gap-3">
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="flex-1 rounded-full border border-white/25 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/5 transition"
+                className="flex-1 rounded-full border border-white/25 px-4 py-3 text-sm font-medium text-white hover:bg-white/5 transition"
               >
                 Annuler
               </button>
               <button
                 onClick={supprimer}
-                className="flex-1 rounded-full bg-red-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-red-700 transition"
+                className="flex-1 rounded-full bg-red-600 px-4 py-3 text-sm font-medium text-white hover:bg-red-700 transition"
               >
                 Supprimer
               </button>

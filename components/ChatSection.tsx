@@ -122,7 +122,7 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
               key={s}
               onClick={() => envoyer(s)}
               disabled={loading}
-              className="rounded-full border border-border-soft bg-ink px-4 py-2 text-sm text-white/80 transition hover:bg-white/5 hover:border-accent/50 disabled:opacity-50"
+              className="rounded-full border border-border-soft bg-ink px-4 py-3 text-sm text-white/80 transition hover:bg-white/5 hover:border-accent/50 disabled:opacity-50"
             >
               {s}
             </button>
@@ -145,12 +145,12 @@ export default function ChatSection({ result, texteDocument }: ChatSectionProps)
             onChange={(e) => setInput(e.target.value)}
             placeholder="Posez votre question…"
             disabled={loading}
-            className="flex-1 rounded-full border border-border-soft bg-ink px-4 py-2.5 text-sm text-white outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-60"
+            className="flex-1 rounded-full border border-border-soft bg-ink px-4 py-3 text-sm text-white outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-60"
           />
           <button
             type="submit"
             disabled={!input.trim() || loading}
-            className="rounded-full dc-gradient-bg px-5 py-2.5 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-full dc-gradient-bg px-5 py-3 text-sm font-semibold tracking-[0.3px] text-white transition hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Envoyer
           </button>
