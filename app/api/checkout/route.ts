@@ -57,5 +57,7 @@ export async function POST(request: NextRequest) {
     cancel_url: `${baseUrl}/tarifs`,
   });
 
+  console.log("Checkout créé avec succès:", { sessionId: session.id, userId, plan });
+
   return NextResponse.json({ url: session.url });
 }

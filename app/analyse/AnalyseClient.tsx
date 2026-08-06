@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import UploadZone from "@/components/UploadZone";
 import ResultCard from "@/components/ResultCard";
@@ -52,6 +53,11 @@ export default function AnalyseClient() {
       const { texte_extrait, ...analyseResult } = data;
       setTexteDocument(texte_extrait ?? texte ?? "");
       setResult(analyseResult as AnalyseResult);
+
+      sendGAEvent("event", "analyse_document", {
+        event_category: "engagement",
+        event_label: "document_analyse",
+      });
     } catch {
       setErreur("Une erreur est survenue. Réessayez.");
     } finally {

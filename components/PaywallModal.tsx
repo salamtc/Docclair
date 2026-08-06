@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 interface PaywallModalProps {
   onClose: () => void;
@@ -10,6 +11,11 @@ export default function PaywallModal({ onClose }: PaywallModalProps) {
   const [loading, setLoading] = useState(false);
 
   const handleAbonnement = async () => {
+    sendGAEvent("event", "click_abonnement", {
+      event_category: "conversion",
+      event_label: "paywall_particulier",
+    });
+
     setLoading(true);
     try {
       const response = await fetch("/api/checkout", {
